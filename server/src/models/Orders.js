@@ -44,8 +44,10 @@ module.exports = (sequelize) => {
     {
       hooks: {
         beforeCreate: (order) => {
-          const today = new Date();
-          order.creationDate = today.toLocaleDateString("en-CA");
+          if (!order.creationDate) {
+            const today = new Date();
+            order.creationDate = today.toLocaleDateString("en-CA");
+          }
         },
       },
     }

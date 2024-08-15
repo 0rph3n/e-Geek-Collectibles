@@ -1,10 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getProductById,
-  resetProductDetail,
-} from "../../redux/actions";
+import { getProductById, resetProductDetail } from "../../redux/actions";
 import CartContext from "../../context/CartContext";
 import Navigation from "../../components/Navigation/Navigation";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -138,107 +135,102 @@ export default function Detail() {
               ${productDetail.price}
             </p>
             <FavButton />
-            
-              <div className="mt-8 flex items-center border-gray-100">
-                <span
-                  onClick={handleDecrement}
-                  className="cursor-pointer rounded-l bg-gray-100 px-3.5 py-1 duration-100 hover:bg-amber-500 hover:text-gray-200"
-                >
-                  -
-                </span>
-                <span className="text-m h-8 w-8 border bg-white py-1 text-center outline-none">
-                  {quantity}
-                </span>
-                <span
-                  onClick={handleIncrement}
-                  className="cursor-pointer rounded-r bg-gray-100 px-3 py-1 duration-100 hover:bg-amber-500 hover:text-gray-200"
-                >
-                  +
-                </span>
-                <span className="ml-4 text-sm font-medium text-gray-500">
-                  Inventory:{" "}
-                  {productDetail.stock > 0 ? productDetail.stock : "SIN STOCK"}
-                </span>
-              </div>
-              <Reviews productId={productDetail.id} />
+
+            <div className="mt-8 flex items-center border-gray-100">
+              <span
+                onClick={handleDecrement}
+                className="cursor-pointer rounded-l bg-gray-100 px-3.5 py-1 duration-100 hover:bg-amber-500 hover:text-gray-200"
+              >
+                -
+              </span>
+              <span className="text-m h-8 w-8 border bg-white py-1 text-center outline-none">
+                {quantity}
+              </span>
+              <span
+                onClick={handleIncrement}
+                className="cursor-pointer rounded-r bg-gray-100 px-3 py-1 duration-100 hover:bg-amber-500 hover:text-gray-200"
+              >
+                +
+              </span>
+              <span className="ml-4 text-sm font-medium text-gray-500">
+                Inventory:{" "}
+                {productDetail.stock > 0 ? productDetail.stock : "SIN STOCK"}
+              </span>
             </div>
-
-
-            <form className="mt-10 flex">
-              <div className="mr-4 w-1/2">
-                {productDetail.stock === 0 ? (
-                  <button
-                    className="flex w-full cursor-not-allowed items-center justify-center rounded-md border border-transparent bg-gray-500 px-8 py-3 text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2"
-                    disabled
-                  >
-                    Add to cart
-                  </button>
-                ) : (
-                  <button
-                    type="submit"
-                    className="flex w-full items-center justify-center rounded-md border border-transparent bg-amber-500 px-8 py-3 text-base font-medium text-white hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2"
-                    onClick={handleAddToCart}
-                  >
-                    Add to cart
-                  </button>
-                )}
-              </div>
-              <div className="w-1/2">
-                {productDetail.stock === 0 ? (
-                  <button
-                    className="flex w-full cursor-not-allowed items-center justify-center rounded-md border border-transparent bg-gray-500 px-8 py-3 text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2"
-                    disabled
-                  >
-                    Buy Now
-                  </button>
-                ) : (
-                  <button
-                    type="submit"
-                    className="flex w-full items-center justify-center rounded-md border border-transparent bg-green-500 px-8 py-3 text-base font-medium text-white hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2"
-                    onClick={handleBuyNow}
-                  >
-                    Buy Now
-                  </button>
-                )}
-              </div>
-            </form>
+            <Reviews productId={productDetail.id} />
           </div>
-          <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
-            <div>
-              <h3 className="sr-only">Description</h3>
-              <div className="space-y-6">
-                <p className="text-base text-gray-900">
-                  {productDetail.description}
-                </p>
-              </div>
+
+          <form className="mt-10 flex">
+            <div className="mr-4 w-1/2">
+              {productDetail.stock === 0 ? (
+                <button
+                  className="flex w-full cursor-not-allowed items-center justify-center rounded-md border border-transparent bg-gray-500 px-8 py-3 text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2"
+                  disabled
+                >
+                  Add to cart
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  className="flex w-full items-center justify-center rounded-md border border-transparent bg-amber-500 px-8 py-3 text-base font-medium text-white hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2"
+                  onClick={handleAddToCart}
+                >
+                  Add to cart
+                </button>
+              )}
+            </div>
+            <div className="w-1/2">
+              {productDetail.stock === 0 ? (
+                <button
+                  className="flex w-full cursor-not-allowed items-center justify-center rounded-md border border-transparent bg-gray-500 px-8 py-3 text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2"
+                  disabled
+                >
+                  Buy Now
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  className="flex w-full items-center justify-center rounded-md border border-transparent bg-green-500 px-8 py-3 text-base font-medium text-white hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-offset-2"
+                  onClick={handleBuyNow}
+                >
+                  Buy Now
+                </button>
+              )}
+            </div>
+          </form>
+        </div>
+        <div className="py-10 lg:col-span-2 lg:col-start-1 lg:border-r lg:border-gray-200 lg:pb-16 lg:pr-8 lg:pt-6">
+          <div>
+            <h3 className="sr-only">Description</h3>
+            <div className="space-y-6">
+              <p className="text-base text-gray-900">
+                {productDetail.description}
+              </p>
+            </div>
+          </div>
+          <div className="mt-10">
+            <h3 className="text-sm font-medium text-gray-900">Details</h3>
+            <div className="mt-4">
+              <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
+                <li key={productDetail.category} className="text-gray-400">
+                  <span className="text-gray-600">
+                    Category: {productDetail.category}
+                  </span>
+                </li>
+                <li key={productDetail.author} className="text-gray-400">
+                  <span className="text-gray-600">
+                    Author: {productDetail.author}
+                  </span>
+                </li>
+                <li key={productDetail.manufacturer} className="text-gray-400">
+                  <span className="text-gray-600">
+                    Manufacturer: {productDetail.manufacturer}
+                  </span>
+                </li>
+              </ul>
             </div>
             <div className="mt-10">
-              <h3 className="text-sm font-medium text-gray-900">Details</h3>
-              <div className="mt-4">
-                <ul role="list" className="list-disc space-y-2 pl-4 text-sm">
-                  <li key={productDetail.category} className="text-gray-400">
-                    <span className="text-gray-600">
-                      Category: {productDetail.category}
-                    </span>
-                  </li>
-                  <li key={productDetail.author} className="text-gray-400">
-                    <span className="text-gray-600">
-                      Author: {productDetail.author}
-                    </span>
-                  </li>
-                  <li
-                    key={productDetail.manufacturer}
-                    className="text-gray-400"
-                  >
-                    <span className="text-gray-600">
-                      Manufacturer: {productDetail.manufacturer}
-                    </span>
-                  </li>
-                </ul>
-              </div>
-              <div className="mt-10">
-                <ShowReview productId={productDetail.id} />
-              </div>
+              <ShowReview productId={productDetail.id} />
             </div>
           </div>
         </div>
